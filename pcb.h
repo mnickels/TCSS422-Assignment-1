@@ -31,7 +31,7 @@ typedef struct pcb {
 	unsigned char channel_no;	// which I/O device or service Q
 	// if process is blocked, which queue it is in
 	CPU_context_p context;	// set of cpu registers
-	//other items to be added as needed	
+	//other items to be added as needed
 } PCB_s;
 
 typedef PCB_s * PCB_p;
@@ -47,20 +47,20 @@ void pcb_destroy(PCB_p);
 
 void pcb_init(PCB_p);
 
-unsigned int set_pid(PCB_p, unsigned int);
+unsigned int pcb_set_pid(PCB_p, unsigned int);
 
-unsigned int get_pid(PCB_p);
+unsigned int pcb_get_pid(PCB_p);
 
-void set_state(PCB_p, enum state_type);
+void pcb_set_state(PCB_p, enum state_type);
 
-enum state_type get_state(PCB_p);
+enum state_type pcb_get_state(PCB_p);
 
-int set_parent(PCB_p, unsigned int);
+int pcb_set_parent(PCB_p, unsigned int);
 
-unsigned int get_parent(PCB_p);
+unsigned int pcb_get_parent(PCB_p);
 
-int set_priority(PCB_p, unsigned char);
+int pcb_set_priority(PCB_p, unsigned char);
 
-unsigned char get_priority(PCB_p);
+unsigned char pcb_get_priority(PCB_p);
 #endif
 
