@@ -1,7 +1,6 @@
 #ifndef PCB_H_INCLUDED
 #define PCB_H_INCLUDED
 
-
 typedef struct cpu_context {
 	// CPU state for the LC-3 processor
 	unsigned int pc;
@@ -37,30 +36,31 @@ typedef struct pcb {
 typedef PCB_s * PCB_p;
 
 
-void context_new(CPU_context_p);
+CPU_context_p context_new(void);
 
 void context_destroy(CPU_context_p);
 
-void pcb_new(void);
-
-void pcb_destroy(PCB_p);
+PCB_p pcb_new(void);
 
 void pcb_init(PCB_p);
 
-unsigned int pcb_set_pid(PCB_p, unsigned int);
+void pcb_destroy(PCB_p);
 
 unsigned int pcb_get_pid(PCB_p);
 
-void pcb_set_state(PCB_p, enum state_type);
+void pcb_set_pid(PCB_p, unsigned int);
 
 enum state_type pcb_get_state(PCB_p);
 
-int pcb_set_parent(PCB_p, unsigned int);
+void pcb_set_state(PCB_p, enum state_type);
 
 unsigned int pcb_get_parent(PCB_p);
 
-int pcb_set_priority(PCB_p, unsigned char);
+void pcb_set_parent(PCB_p, unsigned int);
 
 unsigned char pcb_get_priority(PCB_p);
+
+void pcb_set_priority(PCB_p, unsigned char);
+
 #endif
 
