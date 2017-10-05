@@ -5,7 +5,7 @@
 #include <stdio.h>
 
 
-FIFO_q_p q_new(FIFO_q_p queue, int element_size) {
+FIFO_q_p q_new(int element_size) {
     FIFO_q_p this = (FIFO_q_p) malloc(sizeof(FIFO_q_p));
     if (!this)
         return NULL;
@@ -58,6 +58,7 @@ PCB_p fifo_q_dequeue(FIFO_q_p queue) {
         return NULL;
     Node_p front = queue->front;
     Node_p next = front->next;
+    pcb_destroy(queue->front->process);
     free(queue->front);
     queue->front = next;
     queue->length--;

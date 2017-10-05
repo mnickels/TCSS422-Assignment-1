@@ -19,7 +19,7 @@ typedef struct fifo_q {
 
 typedef FIFO_q_s * FIFO_q_p;
 
-FIFO_q_p fifo_q_new(FIFO_q_p);
+FIFO_q_p fifo_q_new(int);
 
 int fifo_q_destroy(FIFO_q_p);
 
