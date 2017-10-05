@@ -25,8 +25,16 @@ void prio_q_enqueue(PRIO_q_p this, PCB_p proc) {
 
 PCB_p prio_q_dequeue(PRIO_q_p this) {
 	// check each fifo queue's head
-	// if null, this queue is empty
-	// else, the returned dequeued pcb gets to run now
+	for (int i = 0; i < sizeof(this->queues); i++) {
+		void * head = fifo_q_dequeue(this->queues[i]);
+
+		// if null, this queue is empty
+		// else, the returned dequeued pcb gets to run now
+		if (head) {
+			return (PCB_p) head;
+		}
+	}
+	return NULL;
 }
 
 char * prio_q_to_string(PRIO_q_p this) {
