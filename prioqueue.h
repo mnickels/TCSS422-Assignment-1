@@ -1,10 +1,10 @@
 #ifndef PRIORITY_Q_H_INCLUDED
 #define PRIORITY_Q_H_INCLUDED
 
-#define NUM_PRIORITY_LEVEL
+#include "pcb.h"
+#include "fifoqueue.h"
 
-include "pcb.h"
-include "fifoqueue.h"
+#define NUM_PRIORITY_LEVEL
 
 typedef struct prio_q {
 	FIFO_q_p queues[NUM_PRIORITY_LEVEL];
