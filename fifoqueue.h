@@ -19,16 +19,16 @@ typedef struct fifo_q {
 
 typedef FIFO_q_s * FIFO_q_p; 
 
-FIFO_q_p q_new(FIFO_q_p);
+FIFO_q_p fifo_q_new(FIFO_q_p);
 
-void q_destroy(FIFO_q_p);
+void fifo_q_destroy(FIFO_q_p);
 
-char * q_to_string(FIFO_q_p);
+char * fifo_q_to_string(FIFO_q_p);
 
-int q_is_empty(FIFO_q_p);
+int fifo_q_is_empty(FIFO_q_p);
 
-int q_enqueue(FIFO_q_p, PCB_p);
+int fifo_q_enqueue(FIFO_q_p, PCB_p);
 
-PCB_p q_dequeue(FIFO_q_p);
+PCB_p fifo_q_dequeue(FIFO_q_p);
 
 #endif
