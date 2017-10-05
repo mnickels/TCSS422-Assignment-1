@@ -16,7 +16,7 @@ FIFO_q_p q_new(FIFO_q_p queue, int element_size) {
     return this;
 }
 
-int q_destroy(FIFO_q_p queue) {
+int fifo_q_destroy(FIFO_q_p queue) {
     if (!queue)
         return 0;
     while (!q_is_empty(queue))
@@ -25,11 +25,11 @@ int q_destroy(FIFO_q_p queue) {
     return 1;
 }
 
-char * q_to_string(FIFO_q_p) {
+char * fifo_q_to_string(FIFO_q_p) {
    
 }
 
-int q_is_empty(FIFO_q_p queue) {
+int fifo_q_is_empty(FIFO_q_p queue) {
     if (!queue)
         return 1;
     if (!queue->front)
@@ -37,7 +37,7 @@ int q_is_empty(FIFO_q_p queue) {
     return 0;
 }
 
-int q_enqueue(FIFO_q_p queue, PCB_p process) {
+int fifo_q_enqueue(FIFO_q_p queue, PCB_p process) {
     if (!queue || !process) 
         return 0;   
     Node_p node = malloc(sizeof(Node_p));
@@ -53,7 +53,7 @@ int q_enqueue(FIFO_q_p queue, PCB_p process) {
     queue->length++;
 }
 
-PCB_p q_dequeue(FIFO_q_p queue) {
+PCB_p fifo_q_dequeue(FIFO_q_p queue) {
     if (q_is_empty(queue))
         return NULL;
     Node_p front = queue->front;
