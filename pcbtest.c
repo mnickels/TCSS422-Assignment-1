@@ -1,6 +1,6 @@
 #include "pcb.h"
 
-#include <stdlib>
+#include <stdlib.h>
 #include <stdio.h>
 
 int main(void) {

@@ -1,9 +1,9 @@
 #include "fifoqueue.h"
 #include "pcb.h"
 
-#include <stdlib>
+#include <stdlib.h>
 #include <stdio.h>
-
+#include <cstring.h>
 
 FIFO_q_p q_new(int element_size) {
     FIFO_q_p this = (FIFO_q_p) malloc(sizeof(FIFO_q_p));
@@ -25,8 +25,19 @@ int fifo_q_destroy(FIFO_q_p queue) {
     return 1;
 }
 
-char * fifo_q_to_string(FIFO_q_p) {
-   
+char * fifo_q_to_string(FIFO_q_p queue) {
+	if (!queue) 
+		return "null";
+   char * tempstring = "[FIFO Queue: ";
+   Node_p tempnode = queue->front;
+   while (tempnode) {
+	   char * tempstring2 = pcb_to_string(temp->process);
+	   strcat(string, tempstring);
+	   temp = temp->next;
+   }
+   char * string = (char *) calloc(strlen(tempstring), sizeof(char));
+   strcpy(string, tempstring);
+   return string;
 }
 
 int fifo_q_is_empty(FIFO_q_p queue) {
