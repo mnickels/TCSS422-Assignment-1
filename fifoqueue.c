@@ -25,18 +25,20 @@ int fifo_q_destroy(FIFO_q_p queue) {
     return 1;
 }
 
-char * fifo_q_to_string(FIFO_q_p queue) {
+void fifo_q_to_string(FIFO_q_p queue, char * string) {
 	if (!queue) 
 		return "null";
    char * tempstring = "[FIFO Queue: ";
    Node_p tempnode = queue->front;
    while (tempnode) {
-	   char * tempstring2 = pcb_to_string(temp->process);
-	   strcat(string, tempstring);
+	   char * pcbstring;
+	   pcb_to_string(temp->process, pcbstring);
+	   strcat(tempstring, pcbstring);
+	   strcat(tempstring, ", );
 	   temp = temp->next;
    }
-   char * string = (char *) calloc(strlen(tempstring), sizeof(char));
-   strcpy(string, tempstring);
+   strcat(tempstring, "]);
+   strcat(string, tempstring);
    return string;
 }
 
