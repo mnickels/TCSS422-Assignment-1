@@ -37,14 +37,10 @@ PCB_p prio_q_dequeue(PRIO_q_p this) {
 	return NULL;
 }
 
-char * prio_q_to_string(PRIO_q_p this) {
-	char * s = "Priority Queue\n";
+void prio_q_to_string(PRIO_q_p this, char * s) {
+	s = "Priority Queue\n";
 	strcat(s, "  Prio:\tQueue:\n");
 	for (int i = 0; i < sizeof(this->queues); i++) {
 		strcat(s, "  " + i + "\t" + fifo_q_to_string(this->queues[i]) + "\n");
 	}
-	// make a persistent copy in memory and return
-	char * persist_s = (char *) calloc(strlen(s), sizeof(char));
-	strcpy(persist_s, s);
-	return persist_s;
 }

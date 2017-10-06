@@ -62,5 +62,7 @@ unsigned char pcb_get_priority(PCB_p);
 
 void pcb_set_priority(PCB_p, unsigned char);
 
+void pcb_to_string(PCB_p, char *);
+
 #endif
 
