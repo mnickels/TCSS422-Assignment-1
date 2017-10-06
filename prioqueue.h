@@ -20,6 +20,6 @@ void prio_q_enqueue(PRIO_q_p, PCB_p);
 
 PCB_p prio_q_dequeue(PRIO_q_p);
 
-char * prio_q_to_string(PRIO_q_p);
+void prio_q_to_string(PRIO_q_p, char *);
 
 #endif
