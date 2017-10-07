@@ -4,7 +4,7 @@
 #include "pcb.h"
 #include "fifoqueue.h"
 
-#define NUM_PRIORITY_LEVEL
+#define NUM_PRIORITY_LEVEL 16
 
 typedef struct prio_q {
 	FIFO_q_p queues[NUM_PRIORITY_LEVEL];

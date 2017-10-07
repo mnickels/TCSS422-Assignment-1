@@ -57,7 +57,7 @@ void pcb_to_string(PCB_p this, char * s) {
 	strcat(s, "\n  state:" + this->state);
 	strcat(s, "\n  parentPID:" + this->parent);
 	strcat(s, "\n  prio:" + this->priority);
-	strcat(s, "\n  mem:" + &(this->mem));
+	strcat(s, "\n  mem:" + this->mem);
 	strcat(s, "\n  size:" + this->size);
 	strcat(s, "\n  cannel_no:" + this->channel_no + '\n]');
 	// TODO: strcat(s, "  context:" + this->pid);

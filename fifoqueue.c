@@ -3,14 +3,14 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include <cstring.h>
+#include <string.h>
 
-FIFO_q_p q_new(int element_size) {
+FIFO_q_p q_new(void) {
     FIFO_q_p this = (FIFO_q_p) malloc(sizeof(FIFO_q_p));
     if (!this)
         return NULL;
     this->length = 0;
-    this->elementSize = element_size;
+    this->elementSize = sizeof(Node_p);
     this->front = NULL;
     this->back = NULL;
     return this;
