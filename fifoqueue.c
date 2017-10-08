@@ -26,7 +26,7 @@ int fifo_q_destroy(FIFO_q_p queue) {
 }
 
 void fifo_q_to_string(FIFO_q_p queue, char * string) {
-	if (!queue || !string) 
+	if (!queue || !string)
 		return;
 	char buffer[10]  = "";
 	sprintf(buffer, "%d", queue->length);
@@ -60,8 +60,8 @@ int fifo_q_is_empty(FIFO_q_p queue) {
 }
 
 int fifo_q_enqueue(FIFO_q_p queue, PCB_p process) {
-    if (!queue || !process) 
-        return 0;   
+    if (!queue || !process)
+        return 0;
     Node_p node = malloc(sizeof(Node_p));
     if (!node)
         return 0;
