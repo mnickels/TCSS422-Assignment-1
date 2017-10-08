@@ -25,9 +25,9 @@ int fifo_q_destroy(FIFO_q_p queue) {
     return 1;
 }
 
-void fifo_q_to_string(FIFO_q_p queue, char * string) {
+char * fifo_q_to_string(FIFO_q_p queue, char * string) {
 	if (!queue || !string) 
-		return;
+		return NULL;
 	char buffer[10]  = "";
 	sprintf(buffer, "%d", queue->length);
 	char tempstring[] = "Q:Count=";
@@ -49,6 +49,7 @@ void fifo_q_to_string(FIFO_q_p queue, char * string) {
 		}
     }
    strcpy(string, tempstring);
+   return string;
 }
 
 int fifo_q_is_empty(FIFO_q_p queue) {
