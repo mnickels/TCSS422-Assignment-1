@@ -3,34 +3,31 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <limits.h>
 
 int main(void) {
+	// Create a queue on the heap
     FIFO_q_p queue = fifo_q_new();
+	
+	//buffers for tostring functions
+	char * fifostring = (char *)malloc(sizeof(char) * INT_MAX);
+	char * pcbstring = (char *)malloc(sizeof(char) * INT_MAX);
+	
+	// Populate the queue with a random number of PCBs (between 10 and 30
 	int i;
-	int j = (int)((double)rand() / ((double)RAND_MAX + 1) * 30);
+	int j = (int)((double)rand() / ((double)RAND_MAX + 1 - 10) * 30);
 	for (i = 0; i < j; i++) {
 		int priority = (int)((double)rand() / ((double)RAND_MAX + 1) * 15);
 		PCB_p process = pcb_new();
 		pcb_set_priority(process, priority);
+		//pcb_to_string(process, pcbstring);
+		fifo_q_to_string(queue, fifostring);
+		printf("%s", fifostring);
+		//printf(" : contents: %s", pcbstring);
+		
 	}
-    PCB_p process = pcb_new();
-    /*
-    if (fifo_q_is_empty(queue)) 
-        printf("The queue is empty.\n");
-    
-    printf("%s", fifo_q_to_string(queue));
-    
-    fifo_q_enqueue(queue, process);
-    
-    if (!fifo_q_is_empty(queue)) 
-        printf("\nThe queue is not empty.\n");
-    
-    printf("%s", fifo_q_to_string(queue));
-    
-    fifo_q_dequeue(queue, process);
-    
-    printf("%s", fifo_q_to_string(queue));
-    */
+	
     fifo_q_destroy(queue);
-    
+    free(fifostring);
+	free(pcbstring);
 }

@@ -26,11 +26,13 @@ int fifo_q_destroy(FIFO_q_p queue) {
 }
 
 void fifo_q_to_string(FIFO_q_p queue, char * string) {
-	if (!queue) 
+	if (!queue || !string) 
 		return;
 	char buffer[10]  = "";
 	sprintf(buffer, "%d", queue->length);
-	char * tempstring = "Q:Count=" + temp + ": ";
+	char * tempstring = "Q:Count=";
+	strcat(tempstring, buffer);
+	strcat(tempstring, ": ");
 	Node_p tempnode = queue->front;
 	int i = 0;
 	while (tempnode) {
@@ -40,8 +42,11 @@ void fifo_q_to_string(FIFO_q_p queue, char * string) {
 		else {
 			char buffer[10]  = "";
 			sprintf(buffer, "%d", i);
-			strcat(tempstring, "P" + buffer + "->");
+			strcat(tempstring, "P");
+			strcat(tempstring, buffer);
+			strcat(tempstring, "->");
 	    tempnode = tempnode->next;
+		}
     }
    strcpy(string, tempstring);
 }
