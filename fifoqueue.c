@@ -28,17 +28,22 @@ int fifo_q_destroy(FIFO_q_p queue) {
 void fifo_q_to_string(FIFO_q_p queue, char * string) {
 	if (!queue) 
 		return;
-   char * tempstring = "[FIFO Queue: ";
-   Node_p tempnode = queue->front;
-   while (tempnode) {
-	   char * pcbstring;
-	   pcb_to_string(tempnode->process, pcbstring);
-	   strcat(tempstring, pcbstring);
-	   strcat(tempstring, ", ");
-	   tempnode = tempnode->next;
-   }
-   strcat(tempstring, "]");
-   strcat(string, tempstring);
+	char buffer[10]  = "";
+	sprintf(buffer, "%d", queue->length);
+	char * tempstring = "Q:Count=" + temp + ": ";
+	Node_p tempnode = queue->front;
+	int i = 0;
+	while (tempnode) {
+	    if (tempnode == queue->back) {
+			strcat(tempstring, "-*");
+		}
+		else {
+			char buffer[10]  = "";
+			sprintf(buffer, "%d", i);
+			strcat(tempstring, "P" + buffer + "->");
+	    tempnode = tempnode->next;
+    }
+   strcpy(string, tempstring);
 }
 
 int fifo_q_is_empty(FIFO_q_p queue) {
