@@ -10,7 +10,7 @@ int main(void) {
 	
 	pcb_to_string(process, pcbstring);
 	
-	pcb_set_priority(process, (int)((double)rand() / ((double)RAND_MAX + 1) * N));
+	pcb_set_priority(process, (int)((double)rand() / ((double)RAND_MAX + 1) * 15));
 	/*
 	int i;
 	for (i = 0; i < 15; i++) {

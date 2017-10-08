@@ -19,27 +19,26 @@ FIFO_q_p q_new(void) {
 int fifo_q_destroy(FIFO_q_p queue) {
     if (!queue)
         return 0;
-    while (!q_is_empty(queue))
-        q_dequeue(queue);
+    while (!fifo_q_is_empty(queue))
+        fifo_q_dequeue(queue);
     free(queue);
     return 1;
 }
 
 void fifo_q_to_string(FIFO_q_p queue, char * string) {
 	if (!queue) 
-		return "null";
+		return;
    char * tempstring = "[FIFO Queue: ";
    Node_p tempnode = queue->front;
    while (tempnode) {
 	   char * pcbstring;
 	   pcb_to_string(temp->process, pcbstring);
 	   strcat(tempstring, pcbstring);
-	   strcat(tempstring, ", );
-	   temp = temp->next;
+	   strcat(tempstring, ", ");
+	   tempnode = tempnode->next;
    }
    strcat(tempstring, "]);
    strcat(string, tempstring);
-   return string;
 }
 
 int fifo_q_is_empty(FIFO_q_p queue) {
