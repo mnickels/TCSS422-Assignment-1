@@ -2,14 +2,13 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include <limits.h>
 
 int main(void) {
 	
 	// Create a PCB structure on the heap
 	PCB_p process = pcb_new();
 	
-	char * pcbstring = (char *)malloc(sizeof(char) * INT_MAX);
+	char pcbstring[] = "";
 	
 	pcb_to_string(process, pcbstring);
 	// Print the initial contents of the structure
