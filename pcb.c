@@ -1,7 +1,9 @@
 #include "pcb.h"
 #include "prioqueue.h"
 #include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
+#include <limits.h>
 
 PCB_p pcb_new(void) {
 	PCB_p this = (PCB_p) calloc(1, sizeof(PCB_s));
@@ -39,6 +41,10 @@ unsigned int pcb_get_parent(PCB_p this) {
 	return this->parent;
 }
 
+unsigned int pcb_get_pc(PCB_p this) {
+	return this->context->pc;
+}
+
 void pcb_set_parent(PCB_p this, unsigned int parent_pid) {
 	this->parent = parent_pid;
 }
@@ -51,7 +57,14 @@ void pcb_set_priority(PCB_p this, unsigned char priority) {
 	this->priority = priority % NUM_PRIORITY_LEVEL;
 }
 
-void pcb_to_string(PCB_p this, char * s) {
+char * pcb_to_string(PCB_p this, char * s) {
+	char buffer[INT_MAX]  = "";
+	sprintf(buffer, "PID: %u, Priority: %u, state: %d, PC: %u", 
+			pcb_get_pid(this), pcb_get_priority(this), pcb_get_state(this), pcb_get_pc(this));
+	//TODO: add additional pcb data to to_string
+	strcpy(s, buffer);
+	return s;
+	/*
 	s = "PCB[";
 	strcat(s, "\n  PID:" + this->pid);
 	strcat(s, "\n  state:" + this->state);
@@ -61,4 +74,5 @@ void pcb_to_string(PCB_p this, char * s) {
 	strcat(s, "\n  size:" + this->size);
 	strcat(s, "\n  cannel_no:" + this->channel_no + '\n]');
 	// TODO: strcat(s, "  context:" + this->pid);
+	*/
 }

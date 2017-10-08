@@ -28,9 +28,9 @@ int fifo_q_destroy(FIFO_q_p queue) {
 char * fifo_q_to_string(FIFO_q_p queue, char * string) {
 	if (!queue || !string) 
 		return NULL;
+	char tempstring[] = "Q:Count=";
 	char buffer[10]  = "";
 	sprintf(buffer, "%d", queue->length);
-	char tempstring[] = "Q:Count=";
 	strcat(tempstring, buffer);
 	strcat(tempstring, ": ");
 	Node_p tempnode = queue->front;

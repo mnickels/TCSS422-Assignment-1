@@ -20,9 +20,18 @@ int main(void) {
 		PCB_p process = pcb_new();
 		pcb_set_priority(process, priority);
 		printf("%s", fifo_q_to_string(queue, fifostring));
-		printf(" : contents: %s", pcb_to_string(process, pcbstring));
 		
 	}
+	
+	printf(" : contents: ");
+	
+	Node_p tempnode = queue->front;
+	int i = 0;
+	while (tempnode) {
+	    printf("%s ", pcb_to_string(tempnode->process, pcbstring));
+	    tempnode = tempnode->next;
+		}
+    }
 	
     fifo_q_destroy(queue);
 }

@@ -9,17 +9,16 @@ int main(void) {
 	PCB_p process = pcb_new();
 	
 	char pcbstring[] = "";
-	
-	pcb_to_string(process, pcbstring);
+
 	// Print the initial contents of the structure
-	printf("Contents of the PCB: %s", pcbstring);
+	printf("Contents of the PCB: %s", pcb_to_string(process, pcbstring));
+	
 	// Populate the PCB with appropriate data 
 	pcb_set_priority(process, (int)((double)rand() / ((double)RAND_MAX + 1) * 15));
+	//TODO: Add more data
 	
 	pcb_set_state(process, READY);
 	
-	pcb_to_string(process, pcbstring);
-	
-	printf("Contents of the PCB: %s", pcbstring);
+	printf("Contents of the PCB: %s", pcb_to_string(process, pcbstring));
 	
 }
