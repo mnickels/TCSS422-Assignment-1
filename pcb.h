@@ -38,8 +38,6 @@ typedef PCB_s * PCB_p;
 
 CPU_context_p context_new(void);
 
-void context_destroy(CPU_context_p);
-
 PCB_p pcb_new(void);
 
 void pcb_init(PCB_p);

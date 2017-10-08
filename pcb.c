@@ -13,11 +13,30 @@ PCB_p pcb_new(void) {
 }
 
 void pcb_init(PCB_p this) {
-	// TODO: assign values to properties
+	this->context = (CPU_context_p) calloc(1, sizeof(CPU_context_s));
+	this->context->pc = 0;
+	this->context->ir = 0;
+	this->context->psr = 0;
+	this->context->r0 = 0;
+	this->context->r1 = 0;
+	this->context->r1 = 0;
+	this->context->r1 = 0;
+	this->context->r1 = 0;
+	this->context->r1 = 0;
+	this->context->r6 = 0;
+	this->context->r7 = 0;
+	
+	this->pid = 0;
+	this->state = NEW;
+	this->parent = 0;
+	this->priority = 0;
+	this->mem = 0;
+	this->size = 0;
+	this->channel_no = 0;
 }
 
 void pcb_destroy(PCB_p this) {
-	context_destroy(this->context);
+	free(this->context);
 	free(this);
 }
 
@@ -59,6 +78,7 @@ void pcb_set_priority(PCB_p this, unsigned char priority) {
 
 char * pcb_to_string(PCB_p this, char * s) {
 	char buffer[INT_MAX]  = "";
+	//sprintf prints formatted data into a buffer/char array (does not allocate space, can overwrite data)
 	sprintf(buffer, "PID: %u, Priority: %u, state: %d, PC: %u", 
 			pcb_get_pid(this), pcb_get_priority(this), pcb_get_state(this), pcb_get_pc(this));
 	//TODO: add additional pcb data to to_string
