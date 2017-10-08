@@ -30,7 +30,7 @@ void fifo_q_to_string(FIFO_q_p queue, char * string) {
 		return;
 	char buffer[10]  = "";
 	sprintf(buffer, "%d", queue->length);
-	char * tempstring = "Q:Count=";
+	char tempstring[] = "Q:Count=";
 	strcat(tempstring, buffer);
 	strcat(tempstring, ": ");
 	Node_p tempnode = queue->front;

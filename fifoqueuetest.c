@@ -3,15 +3,14 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include <limits.h>
 
 int main(void) {
 	// Create a queue on the heap
     FIFO_q_p queue = fifo_q_new();
 	
 	//buffers for tostring functions
-	char * fifostring = (char *)malloc(sizeof(char) * INT_MAX);
-	char * pcbstring = (char *)malloc(sizeof(char) * INT_MAX);
+	char fifostring[] = "";
+	char pcbstring = "";
 	
 	// Populate the queue with a random number of PCBs (between 10 and 30
 	int i;
@@ -28,6 +27,4 @@ int main(void) {
 	}
 	
     fifo_q_destroy(queue);
-    free(fifostring);
-	free(pcbstring);
 }
