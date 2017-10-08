@@ -23,7 +23,7 @@ FIFO_q_p fifo_q_new(void);
 
 int fifo_q_destroy(FIFO_q_p);
 
-void fifo_q_to_string(FIFO_q_p, char *);
+char * fifo_q_to_string(FIFO_q_p, char *);
 
 int fifo_q_is_empty(FIFO_q_p);
 

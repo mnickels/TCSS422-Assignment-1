@@ -6,7 +6,7 @@
 #include <string.h>
 
 FIFO_q_p q_new(void) {
-    FIFO_q_p this = (FIFO_q_p) malloc(sizeof(FIFO_q_p));
+    FIFO_q_p this = (FIFO_q_p) malloc(sizeof(FIFO_q_s));
     if (!this)
         return NULL;
     this->length = 0;
@@ -25,12 +25,12 @@ int fifo_q_destroy(FIFO_q_p queue) {
     return 1;
 }
 
-void fifo_q_to_string(FIFO_q_p queue, char * string) {
+char * fifo_q_to_string(FIFO_q_p queue, char * string) {
 	if (!queue || !string)
-		return;
+		return NULL;
+	char tempstring[] = "Q:Count=";
 	char buffer[10]  = "";
 	sprintf(buffer, "%d", queue->length);
-	char tempstring[] = "Q:Count=";
 	strcat(tempstring, buffer);
 	strcat(tempstring, ": ");
 	Node_p tempnode = queue->front;
@@ -49,6 +49,7 @@ void fifo_q_to_string(FIFO_q_p queue, char * string) {
 		}
     }
    strcpy(string, tempstring);
+   return string;
 }
 
 int fifo_q_is_empty(FIFO_q_p queue) {

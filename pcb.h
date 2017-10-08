@@ -38,8 +38,6 @@ typedef PCB_s * PCB_p;
 
 CPU_context_p context_new(void);
 
-void context_destroy(CPU_context_p);
-
 PCB_p pcb_new(void);
 
 void pcb_init(PCB_p);
@@ -62,7 +60,9 @@ unsigned char pcb_get_priority(PCB_p);
 
 void pcb_set_priority(PCB_p, unsigned char);
 
-void pcb_to_string(PCB_p, char *);
+char * pcb_to_string(PCB_p, char *);
+
+unsigned int pcb_get_pc(PCB_p);
 
 #endif
 

@@ -10,7 +10,7 @@ int main(void) {
 	
 	//buffers for tostring functions
 	char fifostring[] = "";
-	char pcbstring = "";
+	char pcbstring[] = "";
 	
 	// Populate the queue with a random number of PCBs (between 10 and 30
 	int i;
@@ -19,12 +19,19 @@ int main(void) {
 		int priority = (int)((double)rand() / ((double)RAND_MAX + 1) * 15);
 		PCB_p process = pcb_new();
 		pcb_set_priority(process, priority);
-		//pcb_to_string(process, pcbstring);
-		fifo_q_to_string(queue, fifostring);
-		printf("%s", fifostring);
-		//printf(" : contents: %s", pcbstring);
+		printf("%s", fifo_q_to_string(queue, fifostring));
 		
 	}
+	
+	printf(" : contents: ");
+	
+	Node_p tempnode = queue->front;
+	int i = 0;
+	while (tempnode) {
+	    printf("%s ", pcb_to_string(tempnode->process, pcbstring));
+	    tempnode = tempnode->next;
+		}
+    }
 	
     fifo_q_destroy(queue);
 }
