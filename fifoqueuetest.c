@@ -5,16 +5,16 @@
 #include <stdio.h>
 
 int main(void) {
-    FIFO_queue_p queue = FIFO_queue_new(sizeof(PCB_p));
+    FIFO_q_p queue = fifo_q_new();
 	int i;
 	int j = (int)((double)rand() / ((double)RAND_MAX + 1) * 30);
 	for (i = 0; i < j; i++) {
-		int priority (int)((double)rand() / ((double)RAND_MAX + 1) * 15);
+		int priority = (int)((double)rand() / ((double)RAND_MAX + 1) * 15);
 		PCB_p process = pcb_new();
-		process->priority = priority;
+		pcb_set_priority(process, priority);
 	}
     PCB_p process = pcb_new();
-    
+    /*
     if (fifo_q_is_empty(queue)) 
         printf("The queue is empty.\n");
     
@@ -30,7 +30,7 @@ int main(void) {
     fifo_q_dequeue(queue, process);
     
     printf("%s", fifo_q_to_string(queue));
-    
+    */
     fifo_q_destroy(queue);
     
 }

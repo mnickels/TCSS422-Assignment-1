@@ -32,12 +32,12 @@ void fifo_q_to_string(FIFO_q_p queue, char * string) {
    Node_p tempnode = queue->front;
    while (tempnode) {
 	   char * pcbstring;
-	   pcb_to_string(temp->process, pcbstring);
+	   pcb_to_string(tempnode->process, pcbstring);
 	   strcat(tempstring, pcbstring);
 	   strcat(tempstring, ", ");
 	   tempnode = tempnode->next;
    }
-   strcat(tempstring, "]);
+   strcat(tempstring, "]");
    strcat(string, tempstring);
 }
 
@@ -66,7 +66,7 @@ int fifo_q_enqueue(FIFO_q_p queue, PCB_p process) {
 }
 
 PCB_p fifo_q_dequeue(FIFO_q_p queue) {
-    if (q_is_empty(queue))
+    if (fifo_q_is_empty(queue))
         return NULL;
     Node_p front = queue->front;
     Node_p next = front->next;
