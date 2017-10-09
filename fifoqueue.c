@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <string.h>
 
-FIFO_q_p q_new(void) {
+FIFO_q_p fifo_q_new(void) {
     FIFO_q_p this = (FIFO_q_p) malloc(sizeof(FIFO_q_s));
     if (!this)
         return NULL;
