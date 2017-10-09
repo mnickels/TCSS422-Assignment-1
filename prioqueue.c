@@ -49,7 +49,6 @@ char * prio_q_to_string(PRIO_q_p this, char * s) {
 	for (int i = 0; i < NUM_PRIORITY_LEVEL; i++) {
 		sprintf(buffer, "Q%u: %s\n", i, fifo_q_to_string(this->queues[i], buffer2));
 		strcat(tempstring, buffer);
-		buffer[0] = ' ';
 	}
 	strcpy(s, tempstring);
 	return s;

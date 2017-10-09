@@ -19,8 +19,11 @@ FIFO_q_p fifo_q_new(void) {
 int fifo_q_destroy(FIFO_q_p queue) {
     if (!queue)
         return 0;
-    while (!fifo_q_is_empty(queue))
-        fifo_q_dequeue(queue);
+    while (!fifo_q_is_empty(queue)) {
+        PCB_p dequeued = fifo_q_dequeue(queue);
+        pcb_destroy(dequeued);
+    }
+
     free(queue);
     return 1;
 }
@@ -35,21 +38,22 @@ char * fifo_q_to_string(FIFO_q_p queue, char * string) {
 	strcat(tempstring, ": ");
 	Node_p tempnode = queue->front;
 	for (int i = 0; i < queue->length; i++) {
-		sprintf(buffer, "%d", tempnode->process->pid);
+        char buffer2[10];
+		sprintf(buffer2, "%d", tempnode->process->pid);
 		strcat(tempstring, "P");
-		strcat(tempstring, buffer);
+		strcat(tempstring, buffer2);
 		strcat(tempstring, "->");
         tempnode = tempnode->next;
     }
     strcat(tempstring, "*");
-   strcpy(string, tempstring);
-   return string;
+    strcpy(string, tempstring);
+    return string;
 }
 
 int fifo_q_is_empty(FIFO_q_p queue) {
     if (!queue)
         return 1;
-    if (!queue->front || !queue->back)
+    if (!queue->front)
         return 1;
     if (queue->length == 0)
         return 1;
@@ -79,6 +83,9 @@ PCB_p fifo_q_dequeue(FIFO_q_p queue) {
     Node_p front = queue->front;
     Node_p next = front->next;
     PCB_p dequeued_process = queue->front->process;
+    if (queue->back == queue->front) {
+        queue->back = NULL;
+    }
     free(queue->front);
     queue->front = next;
     queue->length--;

@@ -5,7 +5,7 @@
 
 int main(void) {
 
-	char buffer[2048];
+	char buffer[4096];
 	char buffer2[256];
 	srand(time(0));
 
@@ -19,12 +19,12 @@ int main(void) {
 		prio_q_enqueue(pq, pcb);
 		if (i % 10 == 9) {
 			printf("enqueued %d PCBs,\n", (i % 10) + 1);
-			int todequeue = (rand() % 2) + 4;
+			int todequeue = (rand() % 3) + 4;
 			printf("dequeued %d PCBS:\n", todequeue);
 			for (int j = 0; j < todequeue; j++) {
 				PCB_p dequeued = prio_q_dequeue(pq);
-				pcb_to_string(dequeued, buffer2);
-				printf("  %s\n", buffer2);
+				printf("  %s\n", pcb_to_string(dequeued, buffer2));
+				pcb_destroy(dequeued);
 			}
 			printf("%s\n", prio_q_to_string(pq, buffer));
 		}
