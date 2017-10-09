@@ -5,6 +5,8 @@
 #include <string.h>
 #include <limits.h>
 
+static unsigned int next_pid = 0;
+
 PCB_p pcb_new(void) {
 	PCB_p this = (PCB_p) calloc(1, sizeof(PCB_s));
 	// initialize new PCB
@@ -25,8 +27,8 @@ void pcb_init(PCB_p this) {
 	this->context->r1 = 0;
 	this->context->r6 = 0;
 	this->context->r7 = 0;
-	
-	this->pid = 0;
+
+	pcb_assign_pid(this);
 	this->state = NEW;
 	this->parent = 0;
 	this->priority = 0;
@@ -44,8 +46,8 @@ unsigned int pcb_get_pid(PCB_p this) {
 	return this->pid;
 }
 
-void pcb_set_pid(PCB_p this, unsigned int pid) {
-	this->pid = pid;
+void pcb_assign_pid(PCB_p this) {
+	this=>pid = next_pid++;
 }
 
 enum state_type pcb_get_state(PCB_p this) {
@@ -79,7 +81,7 @@ void pcb_set_priority(PCB_p this, unsigned char priority) {
 char * pcb_to_string(PCB_p this, char * s) {
 	char buffer[INT_MAX]  = "";
 	//sprintf prints formatted data into a buffer/char array (does not allocate space, can overwrite data)
-	sprintf(buffer, "PID: %u, Priority: %u, state: %d, PC: %u, Mem: %u, Size: %u, Channel No.: %u", 
+	sprintf(buffer, "PID: %u, Priority: %u, state: %d, PC: %u, Mem: %u, Size: %u, Channel No.: %u",
 			this->pid, this->priority, this->state, this->context->pc, this->mem, this->size, this->channel_no);
 	//TODO: add additional pcb data to to_string
 	strcpy(s, buffer);

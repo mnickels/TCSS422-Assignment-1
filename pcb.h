@@ -46,7 +46,7 @@ void pcb_destroy(PCB_p);
 
 unsigned int pcb_get_pid(PCB_p);
 
-void pcb_set_pid(PCB_p, unsigned int);
+void pcb_assign_pid(PCB_p);
 
 enum state_type pcb_get_state(PCB_p);
 

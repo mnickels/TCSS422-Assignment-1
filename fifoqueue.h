@@ -31,5 +31,4 @@ int fifo_q_enqueue(FIFO_q_p, PCB_p);
 
 PCB_p fifo_q_dequeue(FIFO_q_p);
 
-
 #endif
