@@ -49,5 +49,5 @@ char * prio_q_to_string(PRIO_q_p this, char * s) {
 		strcat(tempstring, buffer);
 	}
 	strcpy(s, tempstring);
-	return tempstring;
+	return s;
 }

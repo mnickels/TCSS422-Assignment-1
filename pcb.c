@@ -47,7 +47,7 @@ unsigned int pcb_get_pid(PCB_p this) {
 }
 
 void pcb_assign_pid(PCB_p this) {
-	this=>pid = next_pid++;
+	this->pid = next_pid++;
 }
 
 enum state_type pcb_get_state(PCB_p this) {
@@ -82,7 +82,7 @@ char * pcb_to_string(PCB_p this, char * s) {
 	char buffer[INT_MAX]  = "";
 	//sprintf prints formatted data into a buffer/char array (does not allocate space, can overwrite data)
 	sprintf(buffer, "PID: %u, Priority: %u, state: %d, PC: %u, Mem: %u, Size: %u, Channel No.: %u",
-			this->pid, this->priority, this->state, this->context->pc, this->mem, this->size, this->channel_no);
+			this->pid, this->priority, this->state, this->context->pc, &(this->mem), this->size, this->channel_no);
 	//TODO: add additional pcb data to to_string
 	strcpy(s, buffer);
 	return s;
