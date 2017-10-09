@@ -13,9 +13,8 @@ int main(void) {
 	char pcbstring[] = "";
 
 	// Populate the queue with a random number of PCBs (between 10 and 30
-	int i;
 	int j = (int)((double)rand() / ((double)RAND_MAX + 1 - 10) * 30);
-	for (i = 0; i < j; i++) {
+	for (int i = 0; i < j; i++) {
 		int priority = (int)((double)rand() / ((double)RAND_MAX + 1) * 15);
 		PCB_p process = pcb_new();
 		pcb_set_priority(process, priority);
@@ -25,7 +24,6 @@ int main(void) {
 	printf(" : contents: ");
 
 	Node_p tempnode = queue->front;
-	int i = 0;
 	while (tempnode) {
 	    printf("%s ", pcb_to_string(tempnode->process, pcbstring));
 	    tempnode = tempnode->next;
