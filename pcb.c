@@ -81,7 +81,7 @@ void pcb_set_priority(PCB_p this, unsigned char priority) {
 char * pcb_to_string(PCB_p this, char * s) {
 	char buffer[256]  = "";
 	//sprintf prints formatted data into a buffer/char array (does not allocate space, can overwrite data)
-	sprintf(buffer, "PID: %u, Priority: %u, state: %d, PC: %u, Mem: %p, Size: %u, Channel No.: %u",
+	sprintf(buffer, "PID: 0x%X, Priority: 0x%X, state: %d, PC: 0x%04X, Mem: 0x%04X, Size: 0x%X, Channel No.: 0x%X",
 			this->pid, this->priority, this->state, this->context->pc, &(this->mem), this->size, this->channel_no);
 	//TODO: add additional pcb data to to_string
 	strcpy(s, buffer);

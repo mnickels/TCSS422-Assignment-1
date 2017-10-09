@@ -6,7 +6,7 @@
 #include <string.h>
 
 FIFO_q_p fifo_q_new(void) {
-    FIFO_q_p this = (FIFO_q_p) malloc(sizeof(FIFO_q_s));
+    FIFO_q_p this = (FIFO_q_p) calloc(1, sizeof(FIFO_q_s));
     if (!this)
         return NULL;
     this->length = 0;
@@ -28,26 +28,20 @@ int fifo_q_destroy(FIFO_q_p queue) {
 char * fifo_q_to_string(FIFO_q_p queue, char * string) {
 	if (!queue || !string)
 		return NULL;
-	char tempstring[] = "Q:Count=";
-	char buffer[10]  = "";
+	char tempstring[256] = "Q:Count=";
+	char buffer[10];
 	sprintf(buffer, "%d", queue->length);
 	strcat(tempstring, buffer);
 	strcat(tempstring, ": ");
 	Node_p tempnode = queue->front;
-	int i = 0;
-	while (tempnode) {
-	    if (tempnode == queue->back) {
-			strcat(tempstring, "-*");
-		}
-		else {
-			char buffer[10]  = "";
-			sprintf(buffer, "%d", i);
-			strcat(tempstring, "P");
-			strcat(tempstring, buffer);
-			strcat(tempstring, "->");
-	    tempnode = tempnode->next;
-		}
+	for (int i = 0; i < queue->length; i++) {
+		sprintf(buffer, "%d", tempnode->process->pid);
+		strcat(tempstring, "P");
+		strcat(tempstring, buffer);
+		strcat(tempstring, "->");
+        tempnode = tempnode->next;
     }
+    strcat(tempstring, "*");
    strcpy(string, tempstring);
    return string;
 }
@@ -63,7 +57,7 @@ int fifo_q_is_empty(FIFO_q_p queue) {
 int fifo_q_enqueue(FIFO_q_p queue, PCB_p process) {
     if (!queue || !process)
         return 0;
-    Node_p node = malloc(sizeof(Node_p));
+    Node_p node = calloc(1, sizeof(Node_p));
     if (!node)
         return 0;
     node->process = process;
@@ -81,9 +75,9 @@ PCB_p fifo_q_dequeue(FIFO_q_p queue) {
         return NULL;
     Node_p front = queue->front;
     Node_p next = front->next;
-    pcb_destroy(queue->front->process);
+    PCB_p dequeued_process = queue->front->process;
     free(queue->front);
     queue->front = next;
     queue->length--;
-    return next->process;
+    return dequeued_process;
 }

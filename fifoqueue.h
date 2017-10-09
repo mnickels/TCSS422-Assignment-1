@@ -11,10 +11,10 @@ typedef struct node {
 typedef Node_s * Node_p;
 
 typedef struct fifo_q {
-    int length;
+    unsigned int length;
     int elementSize;
     Node_p front;
-    Node_p back ;
+    Node_p back;
 } FIFO_q_s;
 
 typedef FIFO_q_s * FIFO_q_p;
