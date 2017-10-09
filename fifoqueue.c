@@ -49,7 +49,9 @@ char * fifo_q_to_string(FIFO_q_p queue, char * string) {
 int fifo_q_is_empty(FIFO_q_p queue) {
     if (!queue)
         return 1;
-    if (!queue->front)
+    if (!queue->front || !queue->back)
+        return 1;
+    if (queue->length == 0)
         return 1;
     return 0;
 }
@@ -57,7 +59,7 @@ int fifo_q_is_empty(FIFO_q_p queue) {
 int fifo_q_enqueue(FIFO_q_p queue, PCB_p process) {
     if (!queue || !process)
         return 0;
-    Node_p node = calloc(1, sizeof(Node_p));
+    Node_p node = calloc(1, sizeof(Node_s));
     if (!node)
         return 0;
     node->process = process;
@@ -68,6 +70,7 @@ int fifo_q_enqueue(FIFO_q_p queue, PCB_p process) {
     if (!queue->front)
         queue->front = node;
     queue->length++;
+    return 1;
 }
 
 PCB_p fifo_q_dequeue(FIFO_q_p queue) {
